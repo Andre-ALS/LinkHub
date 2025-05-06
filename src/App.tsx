@@ -4,8 +4,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Public from "./pages/Public";
 import Dashboard from "./pages/Dashboard";
-import AuthContainer from "./components/AuthContainer";
-import NotAuthContainer from "./components/NotAuthContainer";
+import NotAuthContainer from "./containers/NotAuthContainer";
+import AuthContainer from "./containers/AuthContainer";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([

@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../store/Auth";
 import { Box } from "@mui/material";
-import Navbar from "../Navbar";
+import Navbar from "../../components/Navbar";
 
 interface AuthContainerProps {
   children: React.ReactNode;

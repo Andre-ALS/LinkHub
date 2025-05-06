@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState } from "react";
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../store/Auth";
 
 const Navbar: React.FC = () => {
