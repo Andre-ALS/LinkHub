@@ -4,30 +4,38 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Public from "./pages/Public";
 import Dashboard from "./pages/Dashboard";
-import AuthRoutes from "./components/Auth";
+import AuthContainer from "./components/AuthContainer";
+import NotAuthContainer from "./components/NotAuthContainer";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
     {
       path: "*",
-      element: <Login />,
+      element: (
+        <NotAuthContainer>
+          <Login />
+        </NotAuthContainer>
+      ),
     },
     {
       path: "/register",
-      element: <Register />,
+      element: (
+        <NotAuthContainer>
+          <Register />
+        </NotAuthContainer>
+      ),
     },
     {
       path: "/:username",
       element: <Public />,
     },
     {
-      element: <AuthRoutes />,
-      children: [
-        {
-          path: "/dashboard",
-          element: <Dashboard />,
-        },
-      ],
+      path: "/dashboard",
+      element: (
+        <AuthContainer>
+          <Dashboard />
+        </AuthContainer>
+      ),
     },
   ]);
 

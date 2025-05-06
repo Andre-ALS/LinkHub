@@ -3,15 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField } from "@mui/material";
 import { isEmailValid, isPasswordValid } from "../../utils/validation";
 import PasswordInput from "../../components/PasswordInput";
+import { useAuth } from "../../store/Auth";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  const authContext = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(true);
 
-  const handleRegister = (e: FormEvent<HTMLFormElement>): void => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     if (isEmailValid(email) || isPasswordValid(password)) {
@@ -20,10 +23,15 @@ export default function Login() {
     }
     setIsFormValid(true);
 
-    // Implement login logic here (e.g., API call)
-    // On success, store the token in local storage and navigate to the dashboard
-    // localStorage.setItem("token", "your_token_here");
-    // navigate("/dashboard");
+    authContext
+      .login(email, password)
+      .then(() => {
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error.message);
+        setIsFormValid(false);
+      });
   };
 
   return (
@@ -37,7 +45,7 @@ export default function Login() {
     >
       <Box
         component="form"
-        onSubmit={(e) => handleRegister(e)}
+        onSubmit={(e) => handleLogin(e)}
         sx={{
           display: "flex",
           flexDirection: "column",

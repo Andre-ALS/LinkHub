@@ -7,9 +7,12 @@ import {
   isPasswordValid,
 } from "../../utils/validation";
 import PasswordInput from "../../components/PasswordInput";
+import { useAuth } from "../../store/Auth";
 
 export default function Register() {
   const navigate = useNavigate();
+
+  const authContext = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,10 +32,15 @@ export default function Register() {
     }
     setIsFormValid(true);
 
-    // Implement registration logic here (e.g., API call)
-    // On success, store the token in local storage and navigate to the dashboard
-    // localStorage.setItem("token", "your_token_here");
-    // navigate("/dashboard");
+    authContext
+      .register(email, password, confirmPassword)
+      .then(() => {
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error.message);
+        setIsFormValid(false);
+      });
   };
 
   return (
