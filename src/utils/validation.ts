@@ -51,7 +51,7 @@ export const isConfirmPasswordValid = (
   password: string,
   confirmPassword: string
 ): string => {
-  if (!!isPasswordValid(confirmPassword)) {
+  if (isPasswordValid(confirmPassword)) {
     return isPasswordValid(confirmPassword);
   }
   if (confirmPassword !== password) {

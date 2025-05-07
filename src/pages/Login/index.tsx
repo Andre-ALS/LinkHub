@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField } from "@mui/material";
 import { isEmailValid, isPasswordValid } from "../../utils/validation";
 import PasswordInput from "../../components/PasswordInput";
-import { useAuth } from "../../store/Auth";
+import { useAuthContext } from "../../store/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const authContext = useAuth();
+  const authContext = useAuthContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

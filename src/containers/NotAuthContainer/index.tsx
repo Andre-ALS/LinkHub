@@ -1,13 +1,13 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../store/Auth";
+import { useAuthContext } from "../../store/AuthContext";
 
 interface NotAuthContainerProps {
   children: React.ReactNode;
 }
 
 const NotAuthContainer: React.FC<NotAuthContainerProps> = ({ children }) => {
-  const authContext = useAuth();
+  const authContext = useAuthContext();
 
   return authContext.user ? <Navigate to="/dashboard" replace /> : children;
 };

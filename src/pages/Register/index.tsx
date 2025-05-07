@@ -7,12 +7,12 @@ import {
   isPasswordValid,
 } from "../../utils/validation";
 import PasswordInput from "../../components/PasswordInput";
-import { useAuth } from "../../store/Auth";
+import { useAuthContext } from "../../store/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();
 
-  const authContext = useAuth();
+  const authContext = useAuthContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

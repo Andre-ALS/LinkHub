@@ -1,10 +1,17 @@
 import React, { MouseEvent, useState } from "react";
-import { AppBar, IconButton, Menu, MenuItem, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useAuth } from "../../store/Auth";
+import { useAuthContext } from "../../store/AuthContext";
 
 const Navbar: React.FC = () => {
-  const authContext = useAuth();
+  const authContext = useAuthContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -19,7 +26,10 @@ const Navbar: React.FC = () => {
 
   return (
     <AppBar position="static">
-      <Toolbar sx={{ display: "flex", justifyContent: "end" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Typography variant="h6">
+          username: {authContext.dashboardUser!.username}
+        </Typography>
         <div>
           <IconButton
             size="large"
