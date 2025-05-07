@@ -5,6 +5,9 @@ import {
   Switch,
   TextField,
   Typography,
+  FormGroup,
+  FormControlLabel,
+  FormHelperText,
 } from "@mui/material";
 import {
   LinkListItem as ILinkListItem,
@@ -152,10 +155,20 @@ const LinkListItem: React.FC<LinkListItemProps> = ({
             {item.title || "No title"}
           </Typography>
           {handlePrivateMode && !redirect && (
-            <Switch
-              checked={item.privateMode}
-              onChange={(e) => handlePrivateMode(item.id, e.target.checked)}
-            />
+            <FormGroup>
+              <FormHelperText>hide link</FormHelperText>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={item.privateMode}
+                    onChange={(e) =>
+                      handlePrivateMode(item.id, e.target.checked)
+                    }
+                  />
+                }
+                label=""
+              />
+            </FormGroup>
           )}
           {handleEditMode && !redirect && (
             <IconButton onClick={() => handleEditMode(item.id, true)}>
